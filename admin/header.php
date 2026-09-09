@@ -148,8 +148,8 @@
               </span>
             </a>
             <ul class="treeview-menu">
-              <li><a href="data_pelanggan.php"><i class="fa fa-circle-o"></i> Data Pelanggan</a></li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> Data Produk</a></li>
+              <li><a href="pelanggan_data.php"><i class="fa fa-circle-o"></i> Data Pelanggan</a></li>
+              <li><a href="produk_data.php"><i class="fa fa-circle-o"></i> Data Produk</a></li>
               <li><a href="#"><i class="fa fa-circle-o"></i> Data Kasir</a></li>
             </ul>
           </li>

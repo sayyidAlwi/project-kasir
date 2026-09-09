@@ -10,12 +10,12 @@ include "header.php";
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      Data Pelanggan
+      Data produk
       <small>Version 2.0</small>
     </h1>
     <ol class="breadcrumb">
       <li><a href="#"><i class="fa fa-dashboard"></i> Dasboard</a></li>
-      <li class="active">Data Pelanggan</li>
+      <li class="active">Data produk</li>
     </ol>
   </section>
 
@@ -25,7 +25,7 @@ include "header.php";
     <div class="row-center">
       <div class="box">
         <div class="box-header">
-          <button class="btn btn-primary" data-target="#tambah-pelanggan" data-toggle="modal">
+          <button class="btn btn-primary" data-target="#tambah-produk" data-toggle="modal">
             <i class="glyphicon glyphicon-plus"></i> Tambah
           </button>
         </div>
@@ -36,54 +36,54 @@ include "header.php";
 
             </tr>
             <?php
-            $pelanggan_data = mysqli_query($conn, "SELECT * FROM tb_pelanggan");
-            $datas_pelanggan = mysqli_fetch_all($pelanggan_data, MYSQLI_ASSOC);
+            $produk_data = mysqli_query($conn, "SELECT * FROM tb_produk");
+            $datas_produk = mysqli_fetch_all($produk_data, MYSQLI_ASSOC);
             ?>
             <thead>
               <th style="width: 10px">ID</th>
-              <th>NAMA PELANGGAN</th>
-              <th>ALAMAT</th>
-              <th>Nomor Telepon</th>
+              <th>NAMA PRODUK</th>
+              <th>HARGA</th>
+              <th>STOK</th>
               <th>OPSI</th>
             </thead>
             <tbody>
               <tr>
-                <?php foreach ($datas_pelanggan as $dt_pelanggan): ?>
-                  <th><?= $dt_pelanggan['PelangganID'] ?></th>
-                  <th><?= $dt_pelanggan['NamaPelanggan'] ?></th>
-                  <th><?= $dt_pelanggan['Alamat'] ?></th>
-                  <th><?= $dt_pelanggan['NomorTelepon'] ?></th>
+                <?php foreach ($datas_produk as $dt_produk): ?>
+                  <th><?= $dt_produk['ProdukID'] ?></th>
+                  <th><?= $dt_produk['NamaProduk'] ?></th>
+                  <th><?= "Rp. " . number_format($dt_produk['Harga']); ?></th>
+                  <th><?= $dt_produk['Stok'] ?></th>
                   <th>
                     <button type="button" class="btn btn-warning" title="Edit" data-toggle="modal"
-                      data-target="#edit-pelanggan<?php echo $dt_pelanggan['PelangganID']; ?>">
+                      data-target="#edit-produk<?php echo $dt_produk['ProdukID']; ?>">
                       <i class="glyphicon glyphicon-edit"></i>
                       <!-- Modal edit -->
                       
                     </button>
-                    <div class="modal fade" id="edit-pelanggan<?php echo $dt_pelanggan['PelangganID']; ?>">
+                    <div class="modal fade" id="edit-produk<?php echo $dt_produk['ProdukID']; ?>">
                       <div class="modal-dialog">
                         <div class="modal-content">
                           <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                               <span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title">Edit Data Pelanggan</h4>
+                            <h4 class="modal-title">Edit Data Produk</h4>
                           </div>
-                          <form action="update_pelanggan.php" method="post">
+                          <form action="produk_update.php" method="post">
                             <div class="modal-body">
-                              <div class="form-group">
-                                <input type="hidden" class="form-control" name="id-pelanggan" value="<?php echo $dt_pelanggan['PelangganID']; ?>">
+                              <div class="form-group-between">
+                                <input type="hidden" class="form-control" name="id-produk" value="<?php echo $dt_produk['ProdukID']; ?>">
                               </div>
                               <div class="form-group">
-                                <label>Nama Pelanggan</label>
-                                <input type="text" class="form-control" name="nama-pelanggan" value="<?php echo $dt_pelanggan['NamaPelanggan']; ?>">
+                                <label>Nama Produk</label>
+                                <input type="text" class="form-control" name="nama-produk" value="<?php echo $dt_produk['NamaProduk']; ?>">
                               </div>
                               <div class="form-group">
-                                <label>Alamat</label>
-                                <input type="text" class="form-control" name="alamat" value="<?php echo $dt_pelanggan['Alamat']; ?>">
+                                <label>Harga</label>
+                                <input type="number" class="form-control" name="harga" value="<?php echo $dt_produk['Harga']; ?>">
                               </div>
                               <div class="form-group">
-                                <label>Nomor Telepon</label>
-                                <input type="number" class="form-control" name="no-telpon" value="<?php echo $dt_pelanggan['NomorTelepon']; ?>">
+                                <label>Stok</label>
+                                <input type="number" class="form-control" name="stok" value="<?php echo $dt_produk['Stok']; ?>">
                               </div>
                             </div>
                             <div class="modal-footer">
@@ -97,7 +97,7 @@ include "header.php";
                       </div>
                       <!-- /.modal-dialog -->
                     </div>
-                    <a href="delete_pelanggan.php?PelangganID=<?php echo $dt_pelanggan['PelangganID']; ?>" class="btn btn-danger" title="Delete" role="button" >
+                    <a href="produk_delete.php?ProdukID=<?php echo $dt_produk['ProdukID']; ?>" class="btn btn-danger" title="Delete" role="button" >
                       <i class="glyphicon glyphicon-trash"></i>
                 </a>
                     </td>
@@ -114,7 +114,7 @@ include "header.php";
   <!-- /.content -->
 </div>
 
-<div class="modal fade" id="tambah-pelanggan">
+<div class="modal fade" id="tambah-produk">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -122,19 +122,19 @@ include "header.php";
           <span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title">Default Modal</h4>
       </div>
-      <form action="proses_pelanggan.php" method="post">
+      <form action="produk_create.php" method="post">
         <div class="modal-body">
           <div class="form-group">
-            <label>Nama Pelanggan</label>
-            <input type="text" class="form-control" name="nama-pelanggan">
+            <label>Nama Produk</label>
+            <input type="text" class="form-control" name="nama-produk">
           </div>
           <div class="form-group">
-            <label>Alamat</label>
-            <input type="text" class="form-control" name="alamat">
+            <label>Harga</label>
+            <input type="number" class="form-control" name="harga">
           </div>
           <div class="form-group">
-            <label>Nomor Telepon</label>
-            <input type="number" class="form-control" name="no-telpon">
+            <label>Stok</label>
+            <input type="number" class="form-control" name="stok">
           </div>
         </div>
         <div class="modal-footer">
@@ -150,7 +150,7 @@ include "header.php";
 <!-- /.modal -->
 
 <?php
-include " footer.php";
+include "footer.php";
 ?>
 </body>
 

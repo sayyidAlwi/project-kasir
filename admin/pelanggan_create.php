@@ -6,5 +6,5 @@
     $nomor = $_POST["no-telpon"];
 
     mysqli_query($conn, "INSERT INTO tb_pelanggan VALUES('','$namaPelanggan','$alamat','$nomor')");
-    header("location:data_pelanggan.php");
+    header("location:pelanggan_data.php");
 ?>

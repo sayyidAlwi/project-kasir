@@ -8,5 +8,5 @@
 
     mysqli_query($conn, "UPDATE tb_pelanggan SET NamaPelanggan = '$namaPelanggan',
     Alamat = '$alamat', NomorTelepon = '$nomor' where PelangganID = '$id'");
-    header("location:data_pelanggan.php");
+    header("location:pelanggan_data.php");
 ?>
